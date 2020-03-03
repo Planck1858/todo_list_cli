@@ -8,13 +8,14 @@ import (
 func NewRouter() *gin.Engine {
 	r := gin.Default()
 	l := models.NewList()
+	l.NewTask("First-Test")
 
 	r.GET("/", IndexHandler())
 	r.GET("/getList", GetListHandler(l))
 	r.POST("/newTask", NewTaskHandler(l))
 	r.DELETE("/clearList", ClearListHandler(l))
 	r.DELETE("/deleteTask/:index", DeleteTaskHandler(l))
-	r.PUT("/changeTask/:index/:flag", ChangeTaskHandler(l))
+	r.PUT("/changeTask/:index", ChangeTaskHandler(l))
 
 	return r
 }

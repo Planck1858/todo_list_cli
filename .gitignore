@@ -1,2 +1,4 @@
 ./idea
 server/config/config.json
+
+client/config/config.json

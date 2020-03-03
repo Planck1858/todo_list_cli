@@ -8,6 +8,10 @@ import (
 	"strconv"
 )
 
+type textResp struct {
+	data string `json:"data"`
+}
+
 /// GET ///
 func IndexHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {
@@ -50,7 +54,7 @@ func DeleteTaskHandler(l *models.List) gin.HandlerFunc {
 			panic(err)
 		}
 
-		l.DeleteTask(index-1)
+		l.DeleteTask(index - 1)
 		c.String(http.StatusOK, "Element was deleted !")
 	}
 }
@@ -62,12 +66,8 @@ func ChangeTaskHandler(l *models.List) gin.HandlerFunc {
 		if err != nil {
 			panic(err)
 		}
-		flag, err := strconv.ParseBool(c.Param("flag"))
-		if err != nil {
-			panic(err)
-		}
 
-		l.ChangeTask(index-1, flag)
+		l.ChangeTask(index - 1)
 		c.String(http.StatusOK, "Task was changed !")
 	}
 }
