@@ -34,9 +34,22 @@ func GetList() List {
 	body := getData(makeURL("/getList"))
 
 	var data List
-	json.Unmarshal(body, &data.Tasks)
+	err := json.Unmarshal(body, &data.Tasks); if err != nil {
+		panic(err)
+	}
 
 	return data
+}
+
+func GetLastTask() ToDo {
+	body := getData(makeURL("/getLastTask"))
+
+	var todo ToDo
+	err := json.Unmarshal(body, &todo); if err != nil {
+		panic(err)
+	}
+
+	return todo
 }
 
 func NewTask(data string) {

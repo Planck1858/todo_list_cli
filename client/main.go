@@ -90,6 +90,17 @@ func main() {
 
 			printSlash()
 			fmt.Scan()
+		case "g":
+			clearAll()
+
+			var todo API.ToDo = API.GetLastTask()
+
+			printSlash()
+			fmt.Println("Tasks:")
+			str := fmt.Sprintf("%s) %s - status[%s]", strconv.Itoa(todo.Index), todo.Task, strconv.FormatBool(todo.Completed))
+			fmt.Println(str)
+			printSlash()
+			fmt.Scan()
 		case "q":
 			os.Exit(3)
 
@@ -120,6 +131,7 @@ func printMenu() {
 	fmt.Println("d) Change Task Status")
 	fmt.Println("e) Delete Task")
 	fmt.Println("f) Clear All List")
+	fmt.Println("g) Get last task")
 	fmt.Println("q) Quit")
 	fmt.Println("")
 	fmt.Println("Choose command: ")
